@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.3/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"></script>
+    <link href="CSS/stylelogin.css" rel="stylesheet">
+
+    <script>
+       
+            $(document).ready(function () {
+            $("#btnlogin").click(function(){
+                const username = $("#txtUsername").val();
+                const password = $("#txtPassword").val();
+                // alert(username + password);
+
+                $.ajax({
+                    method: "POST",
+                    url: "/login",
+                    data: {"username": username,"password": password},
+                }).done(function(data, state, xhr){
+                    //Hard Code
+                    // window.location.replace("/admin");
+                    //Good Code
+                    window.location.replace(data);
+                }).fail(function(xhr, state){
+                    alert("FAIL");
+                });
+            });
+        });
+
+      
+    </script>
+</head>
+<body>
+ 
+   
+                    
+    <div class="container" id="login">
+        <div class="form_content">
+            <h2>สาวัดดีค้าบ</h2>
+            <p>ท่านสมาชิค</p>
+            
+        </div>
+        <div class="login_form">
+            <h1>Login</h1>
+            <form>
+                <input type="text" id="txtUsername" placeholder="Username">
+                <input type="password" id="txtPassword" placeholder="Password">
+                <input type="submit" id="btnlogin" value="Login">
+            </form>
+            <a href="">Forget Password</a>
+            <a href="" class="ml-3">|</a>
+            <a href="" class="ml-3">Register</a>
+    </div>
+    
+</div>
+<div class="rounded float-right mr-3">
+    <img src="../image/logo_login2.png" alt="">
+</div>
+</body>
+</html>
